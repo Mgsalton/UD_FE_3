@@ -25,12 +25,56 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+// best practice is to use uppercase for constructors
+
+// passing a name into the function will update it appropriately
+// e.g. const mathew = new PlayerClass('Mathew')
+
+function PlayerClass(name) {
+    this.name = name;
+
+    this.update = function(){
+
+    };
+    this.render = function(){
+
+    };
+    this.handleInput = function(){
+
+    };
+};
+
+// using a constructor allows us to create multiple instances
+
+//let player2 = new PlayerClass();
+//let player3 = new PlayerClass();
+
+/*
+Using literal notation
+
+let player = {
+    update: function(){
+
+    },
+    render: function(){
+
+    },
+    handleInput: function(){
+
+    }
+};
+*/
+>>>>>>> Stashed changes
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
 
+
+// the 'new' operator creates a new object instance
+
+let player = new PlayerClass();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
