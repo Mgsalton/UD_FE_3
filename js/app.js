@@ -22,10 +22,10 @@ Enemy.prototype.render = function() {
 };
 */
 
-function EnemyGeneration() {
+function EnemyGeneration(x, y) {
+    this.x = x;
+    this.y = y;
     this.sprite = 'images/enemy-bug.png';
-    this.x = 0;
-    this.y = 50;
 
     this.update = function(dt) {
 
@@ -41,11 +41,10 @@ function EnemyGeneration() {
 // a handleInput() method.
 
 function PlayerGeneration(name) {
-
-    this.name = name;
-    this.sprite = 'images/char-boy.png';
     this.x = 300;
     this.y = 400;
+    this.name = name;
+    this.sprite = 'images/char-boy.png';
 
     this.update = function(){
 
@@ -56,19 +55,21 @@ function PlayerGeneration(name) {
     };
 
     this.handleInput = function(){
-
+        // https://youtu.be/OFzs4unxVtU?t=312
     };
 
 };
 
 let player = new PlayerGeneration('Mathew');
-let enemy = new EnemyGeneration();
+let enemyOne = new EnemyGeneration(0, 60);
+let enemyTwo = new EnemyGeneration(0, 145);
+let enemyThree = new EnemyGeneration(0, 230);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-let allEnemies = [enemy];
+let allEnemies = [enemyOne, enemyTwo, enemyThree];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
