@@ -30,7 +30,11 @@ function EnemyGeneration(x, y, speed) {
 
     this.update = function(dt) {
         //console.log('Enemy delta is ' + dt);
-        this.x += this.speed * dt;
+        if (this.x < 550) {
+            this.x += this.speed * dt;
+        } else {
+            this.x = -50;
+        };
     };
 
     this.render = function() {
@@ -111,9 +115,9 @@ function PlayerGeneration(name) {
 };
 
 let player = new PlayerGeneration('Mathew');
-let enemyOne = new EnemyGeneration(0, 60, 1);
-let enemyTwo = new EnemyGeneration(0, 145, 5);
-let enemyThree = new EnemyGeneration(0, 230, 10);
+let enemyOne = new EnemyGeneration(0, 60, 10);
+let enemyTwo = new EnemyGeneration(0, 145, 50);
+let enemyThree = new EnemyGeneration(0, 230, 100);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
