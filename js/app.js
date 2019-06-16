@@ -54,10 +54,26 @@ function PlayerGeneration(name) {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
-    this.handleInput = function(){
+    this.handleInput = function(key){
         // https://youtu.be/OFzs4unxVtU?t=312
+        console.log('You pressed ' + key);
+        if (key == 'left') {
+            //console.log('Left!');
+            player.x -= 100;
+        } else if (key == 'up') {
+            //console.log('Up!');
+            player.y -= 90;
+        } else if (key == 'right') {
+            //console.log('Right!');
+            player.x += 100;
+        } else if (key == 'down') {
+            //console.log('Down!');
+            player.y += 90;
+        } else {
+            console.log('None!');
+            return;
+        }
     };
-
 };
 
 let player = new PlayerGeneration('Mathew');
@@ -74,6 +90,7 @@ let allEnemies = [enemyOne, enemyTwo, enemyThree];
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
+    //console.log(e);
     var allowedKeys = {
         37: 'left',
         38: 'up',
