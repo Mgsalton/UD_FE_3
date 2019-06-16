@@ -22,13 +22,15 @@ Enemy.prototype.render = function() {
 };
 */
 
-function EnemyGeneration(x, y) {
+function EnemyGeneration(x, y, speed) {
     this.x = x;
     this.y = y;
+    this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
 
     this.update = function(dt) {
-
+        //console.log('Enemy delta is ' + dt);
+        this.x += this.speed * dt;
     };
 
     this.render = function() {
@@ -44,9 +46,41 @@ function PlayerGeneration(name) {
     this.x = 300;
     this.y = 400;
     this.name = name;
+    this.leftBoundary = false;
+    this.rightBoundary = false;
+    this.topBoundary = false;
+    this.bottomBoundary = false;
     this.sprite = 'images/char-boy.png';
 
     this.update = function(){
+        //https://isaacsukin.com/news/2015/01/detailed-explanation-javascript-game-loops-and-timing
+        if (this.x > 0) {
+            this.leftBoundary = true;
+        } else if (this.x <= 0) {
+            console.log ('hit the left boundry');
+            this.leftBoundary = false;
+        };
+
+        if (this.x < 400) {
+            this.rightBoundary = true;
+        } else if (this.x >= 400) {
+            console.log ('hit the right boundry');
+            this.rightBoundary = false;
+        };
+
+        if (this.y > 0) {
+            this.topBoundary = true;
+        } else if (this.y <= 0) {
+            console.log ('hit the top boundry');
+            this.topBoundary = false;
+        };
+
+        if (this.y < 400) {
+            this.bottomBoundary = true;
+        } else if (this.y >= 400) {
+            console.log ('hit the bottom boundry');
+            this.bottomBoundary = false;
+        };
 
     };
 
@@ -57,16 +91,16 @@ function PlayerGeneration(name) {
     this.handleInput = function(key){
         // https://youtu.be/OFzs4unxVtU?t=312
         console.log('You pressed ' + key);
-        if (key == 'left') {
+        if (key == 'left' && player.leftBoundary == true) {
             //console.log('Left!');
             player.x -= 100;
-        } else if (key == 'up') {
+        } else if (key == 'up' && player.topBoundary == true) {
             //console.log('Up!');
             player.y -= 90;
-        } else if (key == 'right') {
+        } else if (key == 'right' && player.rightBoundary == true) {
             //console.log('Right!');
             player.x += 100;
-        } else if (key == 'down') {
+        } else if (key == 'down' && player.bottomBoundary == true) {
             //console.log('Down!');
             player.y += 90;
         } else {
@@ -77,9 +111,9 @@ function PlayerGeneration(name) {
 };
 
 let player = new PlayerGeneration('Mathew');
-let enemyOne = new EnemyGeneration(0, 60);
-let enemyTwo = new EnemyGeneration(0, 145);
-let enemyThree = new EnemyGeneration(0, 230);
+let enemyOne = new EnemyGeneration(0, 60, 1);
+let enemyTwo = new EnemyGeneration(0, 145, 5);
+let enemyThree = new EnemyGeneration(0, 230, 10);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
