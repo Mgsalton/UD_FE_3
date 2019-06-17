@@ -27,6 +27,8 @@ function EnemyGeneration(x, y, speed) {
     this.y = y;
     this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
+    this.width = 60;
+    this.height = 60;
 
     this.update = function(dt) {
         //console.log('Enemy delta is ' + dt);
@@ -55,9 +57,41 @@ function PlayerGeneration(name) {
     this.topBoundary = false;
     this.bottomBoundary = false;
     this.sprite = 'images/char-boy.png';
+    this.width = 60;
+    this.height = 60;
 
     this.update = function(){
         //https://isaacsukin.com/news/2015/01/detailed-explanation-javascript-game-loops-and-timing
+
+       //http://blog.sklambert.com/html5-canvas-game-2d-collision-detection/#d-collision-detection
+        /*if (player.x < enemyOne.x) {
+            console.log('Hit enemy 1');
+        } else if (player.x < enemyTwo.x) {
+            console.log('Hit enemy 2');
+        } else if (player.x < enemyThree.x) {
+            console.log('Hit enemy 3');
+        };*/
+        if (player.x < enemyOne.x + enemyOne.width && player.x + player.width > enemyOne.x &&
+		    player.y < enemyOne.y + enemyOne.height && player.y + player.height > enemyOne.y) {
+                console.log('There was a collision with enemy 1');
+                player.x = 300;
+                player.y = 400;
+        };
+
+        if (player.x < enemyTwo.x + enemyTwo.width && player.x + player.width > enemyTwo.x &&
+            player.y < enemyTwo.y + enemyTwo.height && player.y + player.height > enemyTwo.y) {
+                console.log('There was a collision with enemy 2');
+                player.x = 300;
+                player.y = 400;
+        };
+
+        if (player.x < enemyThree.x + enemyThree.width && player.x + player.width > enemyThree.x &&
+            player.y < enemyThree.y + enemyThree.height && player.y + player.height > enemyThree.y) {
+                console.log('There was a collision with enemy 3');
+                player.x = 300;
+                player.y = 400;
+        };
+
         if (this.x > 0) {
             this.leftBoundary = true;
         } else if (this.x <= 0) {
