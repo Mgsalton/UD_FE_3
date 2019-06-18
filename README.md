@@ -15,10 +15,11 @@ At the beginning of each play session the player character will be situated at t
 
 ## Instructions
 
-1. The player character can be moved using the up, down, left, and right arrow keys on your keyboard
-2. A collision with any of the bugs will result in the player character returning back to the starting position
-3. Your objective is to make your way to the pool of water at the very top of the screen
-4. Upon completion, you'll have the opportunity to restart the game by clicking on the restart icon...If you dare
+1. To start the game, open up index.html using a browser (Chrome is preferred)
+2. The player character can be moved using the up, down, left, and right arrow keys on your keyboard
+3. A collision with any of the bugs will result in the player character returning back to the starting position
+4. Your objective is to make your way to the pool of water at the very top of the screen
+5. Upon completion, you'll have the opportunity to restart the game by clicking on the restart icon...If you dare
 
 ## Credits
 
