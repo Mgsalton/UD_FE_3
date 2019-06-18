@@ -22,6 +22,12 @@ Enemy.prototype.render = function() {
 };
 */
 
+
+function endGame() {
+    const modalSelector = document.querySelector('.modal');
+    modalSelector.classList.toggle("displayModal");
+};
+
 function EnemyGeneration(x, y, speed) {
     this.x = x;
     this.y = y;
@@ -52,25 +58,19 @@ function PlayerGeneration(name) {
     this.x = 300;
     this.y = 400;
     this.name = name;
-    this.leftBoundary = false;
-    this.rightBoundary = false;
-    this.topBoundary = false;
-    this.bottomBoundary = false;
+    this.leftBoundary = true;
+    this.rightBoundary = true;
+    this.topBoundary = true;
+    this.bottomBoundary = true;
     this.sprite = 'images/char-boy.png';
     this.width = 60;
     this.height = 60;
+    this.endFlag = 0;
 
-    this.update = function(){
+    this.update = function() {
         //https://isaacsukin.com/news/2015/01/detailed-explanation-javascript-game-loops-and-timing
-
        //http://blog.sklambert.com/html5-canvas-game-2d-collision-detection/#d-collision-detection
-        /*if (player.x < enemyOne.x) {
-            console.log('Hit enemy 1');
-        } else if (player.x < enemyTwo.x) {
-            console.log('Hit enemy 2');
-        } else if (player.x < enemyThree.x) {
-            console.log('Hit enemy 3');
-        };*/
+
         if (player.x < enemyOne.x + enemyOne.width && player.x + player.width > enemyOne.x &&
 		    player.y < enemyOne.y + enemyOne.height && player.y + player.height > enemyOne.y) {
                 console.log('There was a collision with enemy 1');
@@ -111,6 +111,8 @@ function PlayerGeneration(name) {
         } else if (this.y <= 0) {
             console.log ('hit the top boundry');
             this.topBoundary = false;
+            player.endFlag = 1;
+            endGame();
         };
 
         if (this.y < 400) {
@@ -122,33 +124,38 @@ function PlayerGeneration(name) {
 
     };
 
-    this.render = function(){
+    this.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
-    this.handleInput = function(key){
-        // https://youtu.be/OFzs4unxVtU?t=312
+    this.handleInput = function(key) {
+
+        const lBoundary = player.leftBoundary;
+        const tBoundary = player.topBoundary;
+        const rBoundary = player.rightBoundary;
+        const bBoundary = player.bottomBoundary;
+
         console.log('You pressed ' + key);
-        if (key == 'left' && player.leftBoundary == true) {
+        if (key == 'left' && lBoundary == true && player.endFlag != 1) {
             //console.log('Left!');
             player.x -= 100;
-        } else if (key == 'up' && player.topBoundary == true) {
+        } else if (key == 'up' && tBoundary == true && player.endFlag != 1) {
             //console.log('Up!');
             player.y -= 90;
-        } else if (key == 'right' && player.rightBoundary == true) {
+        } else if (key == 'right' && rBoundary == true && player.endFlag != 1) {
             //console.log('Right!');
             player.x += 100;
-        } else if (key == 'down' && player.bottomBoundary == true) {
+        } else if (key == 'down' &&  bBoundary == true && player.endFlag != 1) {
             //console.log('Down!');
             player.y += 90;
         } else {
             console.log('None!');
             return;
-        }
+        };
     };
 };
 
-let player = new PlayerGeneration('Mathew');
+let player = new PlayerGeneration('Swimmer');
 let enemyOne = new EnemyGeneration(0, 60, 10);
 let enemyTwo = new EnemyGeneration(0, 145, 50);
 let enemyThree = new EnemyGeneration(0, 230, 100);
@@ -161,6 +168,7 @@ let allEnemies = [enemyOne, enemyTwo, enemyThree];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
+
 document.addEventListener('keyup', function(e) {
     //console.log(e);
     var allowedKeys = {
@@ -169,6 +177,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
-    player.handleInput(allowedKeys[e.keyCode]);
+        player.handleInput(allowedKeys[e.keyCode]);
 });
