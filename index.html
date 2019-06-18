@@ -2,19 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Effective JavaScript: Frogger</title>
+    <title>Swim to win</title>
+    <!-- stylesheet below allows us to use the restart icon -->
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- javascript files in order of execution -->
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+    <!-- the modal is disabled by default, and appears at the game's end -->
     <div class="modal">
         <div class="modalBox">
             <div class="modalContent">
                 <h1>Congratulations!</h1>
                 <h2>Now start swimming...</h2>
+                <!-- this icon is used to restart the game -->
                 <div class='restart'>
                     <i class="fa fa-repeat"></i>
                 </div>

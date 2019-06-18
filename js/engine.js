@@ -1,3 +1,17 @@
+/*******************************************************************************
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Provided by Udacity. The following changes were made:
+    1. 'var' declarations renamed to 'let' to comply with ES6
+    2. added semicolons to the end of several expressions
+    3. the function call for 'reset' was removed from the init() function
+    4. flow control was added in the main() function to control game progress
+    >player.endFlag is declared in app.js under the PlayerGeneration constructor
+    5. openModal() added to work in conjunction with endGame() in app.js
+    6. restart() added and is called from an event listener in openModal()
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*******************************************************************************/
+
+
 /* Engine.js
  * This file provides the game loop functionality (update entities and render),
  * draws the initial game board on the screen, and then calls the update and
@@ -13,12 +27,12 @@
  * writing app.js a little simpler to work with.
  */
 
-var Engine = (function(global) {
-    /* Predefine the variables we'll be using within this scope,
+let Engine = (function(global) {
+    /* Predefine the letiables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas element's height/width and add it to the DOM.
      */
-    var doc = global.document,
+    let doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
@@ -38,7 +52,7 @@ var Engine = (function(global) {
          * would be the same for everyone (regardless of how fast their
          * computer is) - hurray time!
          */
-        var now = Date.now(),
+        let now = Date.now(),
             dt = (now - lastTime) / 1000.0;
 
         /* Call our update/render functions, pass along the time delta to
@@ -52,7 +66,7 @@ var Engine = (function(global) {
             openModal();
         };
 
-        /* Set our lastTime variable which is used to determine the time delta
+        /* Set our lastTime letiable which is used to determine the time delta
          * for the next time this function is called.
          */
         lastTime = now;
@@ -64,7 +78,7 @@ var Engine = (function(global) {
     }
 
     /* This function does some initial setup that should only occur once,
-     * particularly setting the lastTime variable that is required for the
+     * particularly setting the lastTime letiable that is required for the
      * game loop.
      */
     function init() {
@@ -111,7 +125,7 @@ var Engine = (function(global) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
-        var rowImages = [
+        let rowImages = [
                 'images/water-block.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
@@ -144,7 +158,7 @@ var Engine = (function(global) {
         }
 
         renderEntities();
-    }
+    };
 
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
@@ -159,7 +173,7 @@ var Engine = (function(global) {
         });
 
         player.render();
-    }
+    };
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
@@ -168,7 +182,7 @@ var Engine = (function(global) {
     function openModal() {
         const restartSelector = document.querySelector('.restart');
         restartSelector.addEventListener('click', restart);
-    }
+    };
 
     function restart() {
         location.reload();
@@ -187,7 +201,7 @@ var Engine = (function(global) {
     ]);
     Resources.onReady(init);
 
-    /* Assign the canvas' context object to the global variable (the window
+    /* Assign the canvas' context object to the global letiable (the window
      * object when run in a browser) so that developers can use it more easily
      * from within their app.js files.
      */

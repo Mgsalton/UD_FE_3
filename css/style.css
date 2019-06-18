@@ -1,10 +1,15 @@
+/***********************************
+* Default styling for the main body
+***********************************/
+
 body {
     text-align: center;
     font-family: 'Coda';
 }
-/*
-* Styles for the modal
-*/
+
+/***********************************
+* Styling for the modal
+***********************************/
 
 .modal {
     visibility: hidden;
@@ -36,6 +41,16 @@ body {
     border-radius: 0.8em;
 }
 
+.displayModal {
+    visibility: visible;
+    transform: scale(1.0);
+    transition: transform 0.25s;
+}
+
+/***********************************
+* Styling for the restart icon in the modal
+***********************************/
+
 .restart {
     cursor: pointer;
     display: flex;
@@ -46,10 +61,4 @@ body {
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 35px;
-}
-
-.displayModal {
-    visibility: visible;
-    transform: scale(1.0);
-    transition: transform 0.25s;
 }
